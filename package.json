@@ -2,6 +2,16 @@
     "name": "@liquid-state/charts",
     "version": "1.0.0",
     "description": "Charting utilities and rendering with Google Charts.",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/liquid-state/charts.git"
+      },
+      "author": "Liquid State <dev@liquid-state.com>",
+      "license": "MIT",
+      "bugs": {
+        "url": "https://github.com/liquid-state/charts/issues"
+      },
+      "homepage": "https://github.com/liquid-state/charts#readme",
     "scripts": {
         "build": "tsc",
         "test": "jest",
