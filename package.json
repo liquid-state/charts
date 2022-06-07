@@ -1,5 +1,5 @@
 {
-    "name": "@liquid-state/ls-charts",
+    "name": "@liquid-state/charts",
     "version": "1.0.0",
     "description": "Charting utilities and rendering with Google Charts.",
     "scripts": {
