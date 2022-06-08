@@ -140,7 +140,7 @@ it("should return GoogleChart options colours", () => {
     const { axesConfig, series, xAxisSeriesIndex, data } = getInitialData()
     const cd = new GoogleChartData(axesConfig, series, xAxisSeriesIndex, data)
     showAndHideSomeSeries(cd)
-    expect(cd.getColours()).toStrictEqual(colours.general[0])
+    expect(cd.getColours()).toStrictEqual(colours.generalFixed[0])
 })
 
 
@@ -148,7 +148,7 @@ it("should return complete GoogleChart options", () => {
     const { axesConfig, series, xAxisSeriesIndex, data } = getInitialData()
     const cd = new GoogleChartData(axesConfig, series, xAxisSeriesIndex, data)
     showAndHideSomeSeries(cd)
-    expect(cd.getColours()).toStrictEqual(colours.general[0])
+    expect(cd.getColours()).toStrictEqual(colours.generalFixed[0])
 })
 
 
