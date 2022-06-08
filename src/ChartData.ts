@@ -183,7 +183,7 @@ export class GoogleChartData extends ChartData {
         // compute colours to use, choosing from the provided array but also respecting fixed colours an optimising
         const numSeries = series.length - 1
         const fixedColours = Object.values(this.fixedSeriesColours)
-        const availableColours = colours[numSeries].filter(c => !fixedColours.includes(c))
+        const availableColours = colours[numSeries-1].filter(c => !fixedColours.includes(c))
 
         Object.keys(result).forEach(index => {
             if (!result[index].color) {
