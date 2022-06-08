@@ -119,7 +119,7 @@ export class ChartData implements IChartData {
         const series = this.getDisplayedSeries()
         // series contains the one for the X axis, so we do -1 on the length
         // then since colours is a 0-indexed array, we need to do -1 again
-        return colours.general[series.length - 2]
+        return colours.generalFixed[series.length - 2]
     }
 }
 
