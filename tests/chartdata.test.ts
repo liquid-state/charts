@@ -100,7 +100,7 @@ it("should return GoogleChart options series", () => {
     const { axesConfig, series, xAxisSeriesIndex, data } = getInitialData()
     const cd = new GoogleChartData(axesConfig, series, xAxisSeriesIndex, data)
     showAndHideSomeSeries(cd)
-    expect(cd.getOptionsSeries(cd.getColours())).toStrictEqual({
+    expect(cd.getOptionsSeries(colours.generalFixed)).toStrictEqual({
         "0": {
             id: "q2",
             color: "#5568B8",
@@ -178,13 +178,13 @@ it("should return Google LineChart definition", () => {
                     id: "q1",
                     type: "line",
                     targetAxisIndex: 0, 
-                    color: colours.general[1][0]
+                    color: colours.generalFixed[1][0]
                 },
                 "1": { 
                     id: "q2",
                     type: "bars", 
                     targetAxisIndex: 1,
-                    color: colours.general[1][1]
+                    color: colours.generalFixed[1][1]
                 }
             },
             vAxes: [{
@@ -201,6 +201,7 @@ it("should return Google LineChart definition", () => {
             },
             chartArea: { width: "80%" }
         },
+        height: "400px"
     })
 
     showAndHideSomeSeries(cd)
@@ -225,7 +226,7 @@ it("should return Google LineChart definition", () => {
                     id: "q2",
                     type: "bars", 
                     targetAxisIndex: 0,
-                    color: colours.general[0][0]
+                    color: colours.generalFixed[0][0]
                 }
             },
             vAxes: [{
@@ -239,8 +240,8 @@ it("should return Google LineChart definition", () => {
                 format: 'd/MM/yy',
             },
             chartArea: { width: "80%" }
-    
         },
+        height: "400px"
     })
 })
 

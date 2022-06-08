@@ -24,7 +24,8 @@ export class ChartData implements IChartData {
         public series: ChartDataSeries,
         public xAxisSeriesIndex: number,
         public data: AcceptableValue[][],
-        public isPaginated: boolean = false) {
+        public isPaginated: boolean = false,
+        public fixedSeriesColours: object = {}) {
         if (isPaginated) {
             this.paginator = new DatePaginator(this.data, xAxisSeriesIndex)
         }
@@ -155,7 +156,7 @@ export class GoogleChartData extends ChartData {
         return yAxes
     }
 
-    getOptionsSeries(colours: string[]): any {
+    getOptionsSeries(colours: string[][]): any {
         const series = this.getDisplayedSeries()
         const yAxes = this.getYAxes()
         const axesIndices = {}
@@ -175,9 +176,22 @@ export class GoogleChartData extends ChartData {
                 id: s.id,
                 type: s.preferredRepresentation,
                 targetAxisIndex: axesIndices[s.axis || defaultAxis.id],
-                color: colours[realIndex],
+                color: this.fixedSeriesColours[s.id] || null,
             }
         })
+
+        // compute colours to use, choosing from the provided array but also respecting fixed colours an optimising
+        const numSeries = series.length - 1
+        const fixedColours = Object.values(this.fixedSeriesColours)
+        const availableColours = colours[numSeries].filter(c => !fixedColours.includes(c))
+
+        Object.keys(result).forEach(index => {
+            if (!result[index].color) {
+                const nextColour = availableColours.shift()
+                result[index].color = nextColour
+            }
+        });
+
         return result
     }
 
@@ -207,12 +221,12 @@ export class GoogleChartData extends ChartData {
     }
 
     getOptions() {
-        const colours = this.getColours()
+        // const colours = this.getColours()
         return {
             // title: "???",  TODO
             legend: "none",
             curveType: "function",
-            series: this.getOptionsSeries(colours),
+            series: this.getOptionsSeries(colours.generalFixed),
             ...this.getOptionsAxes(),
             // colors: colours,
             "chartArea": { width: "80%" }  // FIXME: should not be hardcoded
@@ -250,7 +264,7 @@ export class GoogleChartData extends ChartData {
             data: this.getGoogleChartData(),
             options: this.getOptions(),
             // width: "100%",
-            // height: "400px"
+            height: "400px"
         }
     }
 }
